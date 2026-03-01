@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday gurl</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe4e1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        /* PAGE CONTROL */
+        .page { display: none; flex-direction: column; align-items: center; }
+        .active { display: flex; }
+
+        /* BOX STYLING */
+        .gift-box { font-size: 100px; cursor: pointer; animation: bounce 2s infinite; }
+        
+        /* PHOTO STYLING */
+        .pic-frame {
+            width: 300px;
+            height: 350px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            margin: 20px 0;
+        }
+
+        .pic-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .caption {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            color: #333;
+            margin-top: 15px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="p1" class="page active">
+            <div class="gift-box" onclick="go(2)">🎁</div>
+            <h2 style="color: #ff4d6d;">A delivery for Alien 👽</h2>
+            <p>Tap the box to open!</p>
+        </div>
+
+        <div id="p2" class="page">
+            <h1 style="color: white; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">🎉 HAPPY BIRTHDAY! 🎉</h1>
+            <div class="pic-frame">
+                <img src="https://i.postimg.cc/MG65V3Sj/IMG-20260301-202835-629.webp" alt="Pic 1">
+            </div>
+            <div class="caption">
+                <p>To my best friend: Thanks for always being there and making life a blast! 🚀</p>
+                <button class="btn" onclick="go(3)">See more... ✨</button>
+            </div>
+        </div>
+
+        <div id="p3" class="page">
+            <h1 style="color: white; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">😂GOT YOUH! 😼</h1>
+            <div class="pic-frame">
+                <img src="https://i.postimg.cc/g0BYP5kb/Screenshot-20260301-211718.png" alt="Pic 2">
+            </div>
+            <div class="caption">
+                <p>Alien sightings are real! 😂🛸 Caught you in 4k!</p>
+                <button class="btn" onclick="location.reload()">Back to Start ⟲</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        function go(pageNum) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            
+            // Show requested page
+            document.getElementById('p' + pageNum).classList.add('active');
+
+            // Change background colors
+            if(pageNum === 2) {
+                document.body.style.backgroundColor = "#ff4d6d";
+                party();
+            }
+            if(pageNum === 3) {
+                document.body.style.backgroundColor = "#9c27b0";
+                party();
+            }
+        }
+
+        function party() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+</body>
+</html>
